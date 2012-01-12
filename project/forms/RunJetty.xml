@@ -1,0 +1,49 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#RunJetty</help>
+    <formElement>
+        <label>Action to perform:</label>
+        <property>Action</property>
+        <value>start</value>
+        <documentation>Choose the action to perform when you run the procedure.</documentation>
+        <required>1</required>
+        <type>select</type>
+        <option><name>Start Jetty</name><value>start</value></option>
+        <option><name>Stop Jetty</name><value>stop</value></option>
+    </formElement>
+    <formElement>
+        <label>Path to java:</label>
+        <property>JavaPath</property>
+        <value>java</value>
+        <documentation>Absolute path to java.</documentation>
+        <required>0</required>
+        <type>entry</type>
+    </formElement>
+    <formElement>
+        <label>Jetty home folder:</label>
+        <property>JettyHome</property>
+        <documentation>Absolute path where jetty files and folders are located.</documentation>
+        <required>1</required>
+        <type>entry</type>
+    </formElement>
+    <formElement>
+        <label>Stop port:</label>
+        <property>StopPort</property>
+        <documentation>Port number (this is to stop the server later).</documentation>
+        <required>1</required>
+        <type>entry</type>
+    </formElement>
+    <formElement>
+        <label>Stop key:</label>
+        <property>StopKey</property>
+        <documentation>Key value (this is to stop the server later). example: jettytest.</documentation>
+        <required>1</required>
+        <type>entry</type>
+    </formElement>
+    <formElement>
+        <label>Additional commands:</label>
+        <property>AdditionalCommands</property>
+        <documentation>Provide any additional command to add to the command line.</documentation>
+        <required>0</required>
+        <type>textarea</type>
+    </formElement>
+</editor>

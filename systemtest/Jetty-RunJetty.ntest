@@ -1,0 +1,186 @@
+# -*-Perl-*-
+
+# Jetty-RunJetty.ntest -
+#
+# ECJetty
+#
+# Copyright (c) 2005-2010 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use ECTest;
+use ECSelenium;
+
+ 
+# system tests
+
+
+require "$::gTestFileDir/../../EC-Jetty/systemtest/Jetty-common.ntest";
+
+
+$::grunJettyCreated = 0;
+$::gProjectImported = 0;
+
+#stores the result wheter the result of the procedure is success or error
+my $outcome = "";
+
+
+
+
+sub importProject() {
+    assertOK($::N->import(
+                     { file =>"$::gTestFileDir/import.xml",
+               path  => "/projects/JettyTest",
+               force => 1
+             } ), "import JettyTest");
+   
+    assertOK($::N->getProcedure("JettyTest", "Start jetty"),"Start jetty procedure exists");
+    assertOK($::N->getProcedure("JettyTest", "Deploy app"),"Deploy app procedure exists");
+    assertOK($::N->getProcedure("JettyTest", "Stop Jetty"),"Stop Jetty procedure exists");
+    
+   
+    $::gProjectImported = 1;
+}
+
+
+
+sub doSetup() {
+
+    if(! $::gProjectImported) {
+        importProject();
+    }
+
+}
+
+#StartServer with the --dry-run option, otherwise the test will never finish 
+ntest "StartServer", {}, sub {
+    doSetup();
+    # run test job
+ 
+    my $xpath = $::N->runProcedure("JettyTest", 
+            {   procedureName => "Start jetty",
+                pollInterval  => '1',
+                timeout => 600,
+                actualParameter => []
+            });
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+  
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+             
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+
+    # get the value of the commandLine property
+    my $cmd = $xpath->findvalue("//property[propertyName='commandLine']/value");
+    
+    # make sure the $cmd is what was expected
+    if($^O ne "linux"){
+        assertEq(qq{"java" -jar "C:\\tools\\jetty\\start.jar" --dry-run STOP.PORT=8000 STOP.KEY=jetty}, $cmd, "Jetty correct command line");
+    }else{
+        assertEq(qq{"java" -jar "C:\\tools\\jetty/start.jar" --dry-run STOP.PORT=8000 STOP.KEY=jetty}, $cmd, "Jetty correct command line");
+    }
+ 
+};
+
+ntest "DeplotApp", {}, sub {
+    doSetup();
+    # run test job
+ 
+    my $xpath = $::N->runProcedure("JettyTest", 
+            {   procedureName => "Deploy app",
+                pollInterval  => '1',
+                timeout => 600,
+                actualParameter => []
+            });
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+         
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+             
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+
+    # get the value of the commandLine property
+    my $cmd = $xpath->findvalue("//property[propertyName='deploycommandLine']/value");
+    
+    # make sure the $cmd is what was expected
+    if($^O ne "linux"){
+        assertEq(qq{copy "C:\\tools\\jetty\\webapps\\test.war" "C:\\tools\\jetty\\webapps\\foo.war"}, $cmd, "Jetty correct command line");
+    }else{
+        assertEq(qq{cp "C:\\tools\\jetty\\webapps\\test.war" "C:\\tools\\jetty\\webapps\\foo.war"}, $cmd, "Jetty correct command line");
+    }
+ 
+};
+
+ntest "StopJetty", {}, sub {
+    doSetup();
+    # run test job
+ 
+    my $xpath = $::N->runProcedure("JettyTest", 
+            {   procedureName => "Stop Jetty",
+                pollInterval  => '1',
+                timeout => 600,
+                actualParameter => []
+            });
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+         
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+             
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+
+    # get the value of the commandLine property
+    my $cmd = $xpath->findvalue("//property[propertyName='commandLine']/value");
+    
+    # make sure the $cmd is what was expected
+    if($^O ne "linux"){
+        assertEq(qq{"java" -jar "C:\\tools\\jetty\\start.jar" STOP.PORT=8000 STOP.KEY=jetty --stop}, $cmd, "Jetty correct command line");
+    }else{
+        assertEq(qq{"java" -jar "C:\\tools\\jetty/start.jar" STOP.PORT=8000 STOP.KEY=jetty --stop}, $cmd, "Jetty correct command line");
+    }
+ 
+};

@@ -1,0 +1,35 @@
+# -*-Perl-*-
+
+# Jetty.ntest -
+#
+# Exercise basic components of EC-Jetty plugin
+#
+# Copyright (c) 2005-2012 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use warnings;
+use ECTest;
+
+# read in setup and tests that are common to all EC-Jetty plugin archives
+# system tests
+
+
+
+use strict;
+require "$::gTestFileDir/../../EC-Jetty/systemtest/Jetty-common.ntest";
+
+
+
+ntest "check-runJetty-present", {}, sub {
+    # Check that the plugin contains required components
+    my $xpath = $::N->getSteps("$::gPlugin_name","RunJetty");
+    assertOK($xpath,"get steps");
+    assertEq("createJettyCommandLine", $xpath->findvalue("//step[1]/stepName"), "step 1: createJettyCommandLine");
+    assertEq("runJettyCommandLine", $xpath->findvalue("//step[2]/stepName"), "step 2: runJettyCommandLine");
+    
+    $xpath = $::N->getSteps("$::gPlugin_name","DeployApp");
+    assertEq("createJettyCommandLine", $xpath->findvalue("//step[1]/stepName"), "step 1: createJettyCommandLine");
+    assertEq("runJettyCommandLine", $xpath->findvalue("//step[2]/stepName"), "step 2: runJettyCommandLine");
+
+};

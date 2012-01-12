@@ -1,0 +1,17 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeployApp</help>
+    <formElement>
+        <label>War file location:</label>
+        <property>WarFileLocation</property>
+        <documentation>Absolute path to a war file you want to deploy.</documentation>
+        <required>1</required>
+        <type>entry</type>
+    </formElement>
+    <formElement>
+        <label>Jetty's deploy folder</label>
+        <property>WarFileDestination</property>
+        <documentation>Absolute path where the war file will be stored in the server.</documentation>
+        <required>1</required>
+        <type>entry</type>
+    </formElement>
+</editor>
