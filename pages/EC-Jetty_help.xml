@@ -3,76 +3,37 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="generator"
-          content="HTML Tidy for Windows (vers 14 February 2006), see www.w3.org" />
-    <meta content="text/html; charset=us-ascii"
-          http-equiv="content-type" />
+  <meta name="generator" content=
+  "HTML Tidy for Windows (vers 25 March 2009), see www.w3.org" />
+  <meta content="text/html; charset=us-ascii" http-equiv=
+  "content-type" />
 
-    <title>Electric Commander Plugin for Jetty</title>
-    <style type="text/css">
-    /*<![CDATA[*/
-    .pluginname {
-    font-size: xx-large;
-    color: #000099;
-    }
-    .sectionhead {
-    font-size: xx-large;
-    color: #687291;
-    }
-    .sectionnote {
-    font-style: italic;
-    }
-    .procedure {
-    margin-left: 40px;
-    }
-    .procedure h3 {
-    margin-left: -20px;
-    }
-    .paramdefs {
-    border-collapse: collapse;
-    width: 100%;
-    }
-    .paramdefs td {
-    border-style: solid;
-    border-width: 1px;
-    padding-right: 10px;
-    padding-left: 5px;
-    }
-    .required {
-    font-weight: bold;
-    font-style: italic;
-    }
-    img {
-    border-style: solid;
-    border-width: 2px;
-    margin-top: 20px;
-    }
-    /*]]>*/
-    </style>
+  <title>Electric Commander Plugin for Jetty</title>
+  <link rel="stylesheet" href=
+  "../../plugins/@PLUGIN_KEY@/pluginhelp.css" type="text/css"
+  media="screen" />
 </head>
 
 <body>
-    <h1 class="pluginname">EC-Jetty</h1>
-    <hr style="margin-top: 20px; height: 2px; width: 100%;"
-        noshade="noshade" />
+  <div class="help">
+    <h1>Jetty</h1>
 
-    <h1 class="sectionhead">Overview</h1>
-
-    <h2>Jetty</h2>
+    <p>Plugin Version @PLUGIN_VERSION@</p>
+    <hr style=
+    "margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;"
+    noshade="noshade" />
 
     <p>Jetty provides an HTTP server, HTTP client, and
     javax.servlet container. These components are open source and
     available for commercial use and distribution.<br />
-     Jetty is used in a wide variety of projects and
-    products.<br />
-     Jetty can be embedded in devices, tools, frameworks,
+    Jetty is used in a wide variety of projects and products.<br />
+    Jetty can be embedded in devices, tools, frameworks,
     application servers, and clusters.</p>
 
-    <h3>Jetty Links</h3>
+    <h2>Jetty Links</h2>
 
-    <p>More information can be found at
-    <a href="http://jetty.codehaus.org/jetty/">this
-    website</a>.</p>
+    <p>More information can be found at <a href=
+    "http://jetty.codehaus.org/jetty/">this website</a>.</p>
 
     <h2>Electric Commander Integration to Jetty</h2>
 
@@ -82,218 +43,208 @@
     server. This plugin may be useful to deploy a webapp for test
     purposes.</p>
 
-    <h3>Integrated Version</h3>
+    <h2>Integrated Version</h2>
 
     <p>This plugin was developed and tested against version
     8.0.4</p>
-    <hr style="margin-top: 20px; height: 2px; width: 100%;"
-        noshade="noshade" />
 
-    <h1 class="sectionhead">Using the Plugin</h1>
+    <h1>Plugin Procedures</h1>
 
-    <div class="sectionnote">
-        IMPORTANT: For all parameter descriptions below, required
-        parameters are shown in <span class='required'>bold
-        italics</span>.
-    </div>
+    <p>IMPORTANT: For all parameter descriptions below, required
+    parameters are shown in <span class='required'>bold
+    italics</span>.</p>
 
-    <h2>Plugin Procedures</h2>
+    <div id="RunJetty"><a name='RunJetty' id="RunJetty"></a>
 
-    <div class="procedure"
-         id="RunJetty">
-        <a name='RunJetty'
-             id="RunJetty"></a> 
+    <h3>RunJetty</h3>
 
-        <h3>RunJetty</h3>
+    <p>This procedure allows you to start or stop the jetty
+    server.</p>
 
-        <p>This procedure allows you to start or stop the jetty
-        server.</p>
+    <table class="grid">
+      <thead>
+        <tr>
+          <th>Parameter</th>
 
-        <table class="paramdefs">
-            <thead>
-                <tr>
-                    <th>Parameter</th>
+          <th>Description</th>
+        </tr>
+      </thead>
 
-                    <th>Description</th>
-                </tr>
-            </thead>
+      <tbody>
+        <tr>
+          <td class='required'>Action to perform</td>
 
-            <tbody>
-                <tr>
-                    <td class='required'>Action to perform</td>
+          <td>Choose one of the two available options (start or
+          stop) the server. (This is the command-line '--stop'
+          option only if <b>Stop Jetty</b> is selected)
+          (Required).</td>
+        </tr>
 
-                    <td>Choose one of the two available options
-                    (start or stop) the server. (This is the
-                    command-line '--stop' option only if <b>Stop
-                    Jetty</b> is selected) (Required).</td>
-                </tr>
+        <tr>
+          <td class='required'>Path to java</td>
 
-                <tr>
-                    <td class='required'>Path to java</td>
+          <td>Absolute path to java. default is "java"
+          (Required).</td>
+        </tr>
 
-                    <td>Absolute path to java. default is "java"
-                    (Required).</td>
-                </tr>
+        <tr>
+          <td class='required'>Jetty home folder</td>
 
-                <tr>
-                    <td class='required'>Jetty home folder</td>
+          <td>Absolute path where jetty files and folders are
+          located. (Required).</td>
+        </tr>
 
-                    <td>Absolute path where jetty files and folders
-                    are located. (Required).</td>
-                </tr>
+        <tr>
+          <td class='required'>Stop port</td>
 
-                <tr>
-                    <td class='required'>Stop port</td>
+          <td>Port number (this is to stop the server later), this
+          is <b>not</b> the server port 4. (This is the
+          command-line 'STOP.PORT' option) (Required).</td>
+        </tr>
 
-                    <td>Port number (this is to stop the server
-                    later), this is <b>not</b> the server port 4.
-                    (This is the command-line 'STOP.PORT' option)
-                    (Required).</td>
-                </tr>
+        <tr>
+          <td class='required'>Stop key</td>
 
-                <tr>
-                    <td class='required'>Stop key</td>
+          <td>Key value (this is to stop the server later).
+          example: jettytest (This is the command-line 'STOP.KEY'
+          option)(Required).</td>
+        </tr>
 
-                    <td>Key value (this is to stop the server
-                    later). example: jettytest (This is the
-                    command-line 'STOP.KEY' option)(Required).</td>
-                </tr>
+        <tr>
+          <td>Additional commands</td>
 
-                <tr>
-                    <td>Additional commands</td>
+          <td>Provide any additional command to add to the command
+          line.</td>
+        </tr>
+      </tbody>
+    </table><img src=
+    "../../plugins/@PLUGIN_KEY@/images/Jetty-2.png" alt=
+    "startform" /></div>
 
-                    <td>Provide any additional command to add to
-                    the command line.</td>
-                </tr>
-            </tbody>
-        </table><img src="../../plugins/@PLUGIN_KEY@/images/Jetty-2.png"
-             alt="startform" />
-    </div>
+    <div id="DeployApp"><a name='DeployApp' id="DeployApp"></a>
 
-    <div class="procedure"
-         id="DeployApp">
-        <a name='DeployApp'
-             id="DeployApp"></a> 
+    <h3>DeployApp</h3>
 
-        <h3>DeployApp</h3>
+    <p>This procedure will basically copy any specified war file
+    into the webapps folder of a jetty server.</p>
 
-        <p>This procedure will basically copy any specified war
-        file into the webapps folder of a jetty server.</p>
+    <table class="grid">
+      <thead>
+        <tr>
+          <th>Parameter</th>
 
-        <table class="paramdefs">
-            <thead>
-                <tr>
-                    <th>Parameter</th>
+          <th>Description</th>
+        </tr>
+      </thead>
 
-                    <th>Description</th>
-                </tr>
-            </thead>
+      <tbody>
+        <tr>
+          <td class='required'>War file location</td>
 
-            <tbody>
-                <tr>
-                    <td class='required'>War file location</td>
+          <td>Absolute path to a war file you want to
+          deploy.(Required).</td>
+        </tr>
 
-                    <td>Absolute path to a war file you want to
-                    deploy.(Required).</td>
-                </tr>
+        <tr>
+          <td class='required'>Jetty's deploy folder</td>
 
-                <tr>
-                    <td class='required'>Jetty's deploy folder</td>
+          <td>Absolute path where the war file will be stored in
+          the server. (usually the "webapps"
+          directory)(Required).</td>
+        </tr>
+      </tbody>
+    </table><img src=
+    "../../plugins/@PLUGIN_KEY@/images/Jetty-6.png" alt=
+    "deployform" /></div>
 
-                    <td>Absolute path where the war file will be
-                    stored in the server. (usually the "webapps"
-                    directory)(Required).</td>
-                </tr>
-            </tbody>
-        </table><img src="../../plugins/@PLUGIN_KEY@/images/Jetty-6.png"
-             alt="deployform" />
-    </div>
-    <hr style="margin-top: 20px; height: 2px; width: 100%;"
-        noshade="noshade" />
-
-    <h1 class="sectionhead">Examples and Use Cases</h1>
+    <h1>Examples and Use Cases</h1>
 
     <p>In this example we are going to see how to start, deploy a
     web application and stop the jetty server.<br />
-     Follow the next steps.</p>
+    Follow the next steps.</p>
 
     <ol>
-        <li>Download a jetty distribution
-        <a href="http://docs.codehaus.org/display/JETTY/Downloading+Jetty">
-        here</a></li>
+      <li>Download a jetty distribution <a href=
+      "http://docs.codehaus.org/display/JETTY/Downloading+Jetty">here</a></li>
 
-        <li>Extract the zip file and place the folder somewhere.
-        Example C:\tools</li>
+      <li>Extract the zip file and place the folder somewhere.
+      Example C:\tools</li>
 
-        <li>Rename to folder to "jetty" (optional)</li>
+      <li>Rename to folder to "jetty" (optional)</li>
 
-        <li>Create a RunJetty procedure in order to start our jetty
-        server.<br />
-         <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-1.png"
-             alt="steppicker" /></li>
+      <li>Create a RunJetty procedure in order to start our jetty
+      server.</li>
 
-        <li>Fill the parameter form.<br />
-         <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-2.png"
-             alt="startform" /></li>
+      <li>Fill the parameter form.<br />
+      <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-2.png" alt=
+      "startform" /></li>
 
-        <li>Run the procedure and see the log.<br />
-         <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-3.png"
-             alt="log1" /></li>
+      <li>Run the procedure and see the log.<br />
+      <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-3.png" alt=
+      "log1" /></li>
 
-        <li>Open your favorite browser and go to
-        http://localhost:8080/<br />
-         <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-4.png"
-             alt="JettyStarted" /></li>
+      <li>Open your favorite browser and go to
+      http://localhost:8080/<br />
+      <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-4.png" alt=
+      "JettyStarted" /></li>
 
-        <li>Now that jetty has been started we should create a
-        DeployApp procedure.<br />
-         <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-5.png"
-             alt="steppicker" /></li>
+      <li>Now that jetty has been started we should create a
+      DeployApp procedure.</li>
 
-        <li>Fill the parameter form with the two required options,
-        in this case we are going to duplicate the existent war
-        file to the same folder with the name "foo.war".<br />
-         <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-6.png"
-             alt="deployform" /></li>
+      <li>Fill the parameter form with the two required options, in
+      this case we are going to duplicate the existent war file to
+      the same folder with the name "foo.war".<br />
+      <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-6.png" alt=
+      "deployform" /></li>
 
-        <li>Run the procedure, see the log to make sure the war
-        file was copied, then go back to the RunJetty log to see
-        what happened.<br />
-         <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-7.png"
-             alt="log2" /><br />
-         <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-8.png"
-             alt="log3" /><br /></li>
+      <li>Run the procedure, see the log to make sure the war file
+      was copied, then go back to the RunJetty log to see what
+      happened.<br />
+      <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-7.png" alt=
+      "log2" /><br />
+      <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-8.png" alt=
+      "log3" /><br /></li>
 
-        <li>Open your favorite browser and go to
-        http://localhost:8080/foo/ to make sure the new war file
-        was deployed.<br />
-         <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-9.png"
-             alt="browser" /><br /></li>
+      <li>Open your favorite browser and go to
+      http://localhost:8080/foo/ to make sure the new war file was
+      deployed.<br />
+      <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-9.png" alt=
+      "browser" /><br /></li>
 
-        <li>Finally we could create another "RunJetty" procedure to
-        stop the server which is almost the same that the start
-        procedure but changing the <b>Action</b> parameter to "Stop
-        Jetty"<br />
-         <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-10.png"
-             alt="stop" /><br /></li>
+      <li>Finally we could create another "RunJetty" procedure to
+      stop the server which is almost the same that the start
+      procedure but changing the <b>Action</b> parameter to "Stop
+      Jetty"<br />
+      <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-10.png"
+      alt="stop" /><br /></li>
 
-        <li>Go back again to the RunJetty log to see the complete
-        jetty log since we started, deployed and stopped the
-        server.<br />
-         <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-11.png"
-             alt="log4" /><br /></li>
+      <li>Go back again to the RunJetty log to see the complete
+      jetty log since we started, deployed and stopped the
+      server.<br />
+      <img src="../../plugins/@PLUGIN_KEY@/images/Jetty-11.png"
+      alt="log4" /><br /></li>
     </ol>
-    <hr style="margin-top: 20px; height: 2px; width: 100%;"
-        noshade="noshade" />
 
-    <h1 class="sectionhead">Release Notes</h1>
+    <h1>Release Notes</h1>
 
-    <h2>@PLUGIN_KEY@-@PLUGIN_VERSION@</h2>
+    <h2>@PLUGIN_KEY@-1.0.1</h2>
+    <!-- Specific descriptions of additional or changed functionality,
+    new parameters, etc. The plugin version header of this section should
+    include the speciic build number if possible. Repeat this section for
+    each version.
+    -->
 
     <ul>
-        <li>RunJetty procedure</li>
-
-        <li>DeployApp procedure</li>
+      <li>Change Help page style.</li>
     </ul>
+
+    <h2>@PLUGIN_KEY@-1.0.0</h2>
+
+    <ul>
+      <li>RunJetty procedure</li>
+
+      <li>DeployApp procedure</li>
+    </ul>
+  </div>
 </body>
 </html>
