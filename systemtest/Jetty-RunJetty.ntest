@@ -90,14 +90,14 @@ ntest "StartServer", {}, sub {
     
     # make sure the $cmd is what was expected
     if($^O ne "linux"){
-        assertEq(qq{"java" -jar "C:\\tools\\jetty\\start.jar" --dry-run STOP.PORT=8000 STOP.KEY=jetty}, $cmd, "Jetty correct command line");
+        assertEq(qq{"/home/carlos/Desktop/jetty/bin/jetty-cygwin.sh" start}, $cmd, "Jetty correct command line");
     }else{
-        assertEq(qq{"java" -jar "C:\\tools\\jetty/start.jar" --dry-run STOP.PORT=8000 STOP.KEY=jetty}, $cmd, "Jetty correct command line");
+        assertEq(qq{"/home/carlos/Desktop/jetty/bin/jetty.sh" -d start}, $cmd, "Jetty correct command line");
     }
  
 };
 
-ntest "DeplotApp", {}, sub {
+ntest "DeployApp", {}, sub {
     doSetup();
     # run test job
  
@@ -134,9 +134,9 @@ ntest "DeplotApp", {}, sub {
     
     # make sure the $cmd is what was expected
     if($^O ne "linux"){
-        assertEq(qq{copy "C:\\tools\\jetty\\webapps\\test.war" "C:\\tools\\jetty\\webapps\\foo.war"}, $cmd, "Jetty correct command line");
+        assertEq(qq{copy "/home/carlos/Desktop/jetty/webapps/cometd.war" "/home/carlos/Desktop/jetty/webapps/cometd2.war"}, $cmd, "Jetty correct command line");
     }else{
-        assertEq(qq{cp "C:\\tools\\jetty\\webapps\\test.war" "C:\\tools\\jetty\\webapps\\foo.war"}, $cmd, "Jetty correct command line");
+        assertEq(qq{cp "/home/carlos/Desktop/jetty/webapps/cometd.war" "/home/carlos/Desktop/jetty/webapps/cometd2.war"}, $cmd, "Jetty correct command line");
     }
  
 };
@@ -178,9 +178,9 @@ ntest "StopJetty", {}, sub {
     
     # make sure the $cmd is what was expected
     if($^O ne "linux"){
-        assertEq(qq{"java" -jar "C:\\tools\\jetty\\start.jar" STOP.PORT=8000 STOP.KEY=jetty --stop}, $cmd, "Jetty correct command line");
+        assertEq(qq{"/home/carlos/Desktop/jetty/bin/jetty-cygwin.sh" stop}, $cmd, "Jetty correct command line");
     }else{
-        assertEq(qq{"java" -jar "C:\\tools\\jetty/start.jar" STOP.PORT=8000 STOP.KEY=jetty --stop}, $cmd, "Jetty correct command line");
+        assertEq(qq{"/home/carlos/Desktop/jetty/bin/jetty.sh" -d stop}, $cmd, "Jetty correct command line");
     }
  
 };

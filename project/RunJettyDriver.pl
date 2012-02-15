@@ -35,49 +35,37 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    my $Action              = ($ec->getProperty( "Action" ))->findvalue('//value')->string_value;
-    my $JavaPath            = ($ec->getProperty( "JavaPath" ))->findvalue('//value')->string_value;
     my $JettyHome           = ($ec->getProperty( "JettyHome" ))->findvalue('//value')->string_value;
-    my $StopPort            = ($ec->getProperty( "StopPort" ))->findvalue('//value')->string_value;
-    my $StopKey             = ($ec->getProperty( "StopKey" ))->findvalue('//value')->string_value;
+    my $Action              = ($ec->getProperty( "Action" ))->findvalue('//value')->string_value;
     my $AdditionalCommands  = ($ec->getProperty( "AdditionalCommands" ))->findvalue('//value')->string_value;
-    my $separator   = "\\";
-    if($^O eq "linux"){
-        $separator = "/";
+    my $Debug               = ($ec->getProperty( "Debug" ))->findvalue('//value')->string_value;
+    my $Script   = "jetty.sh";
+    if($^O ne "linux"){
+        $Script = "jetty-cygwin.sh";
     }
     
     my @cmd = ();
     
-    if($JavaPath && $JavaPath ne ""){
-        push(@cmd, qq{"$JavaPath" -jar});
-    }else{
-        push(@cmd, "java -jar");
+    if($JettyHome && $JettyHome ne ""){
+        push(@cmd, qq{"$JettyHome/bin/$Script"});
     }
     
-    if($JettyHome && $JettyHome ne ""){
-        push(@cmd, qq{"$JettyHome} . $separator . qq{start.jar"});
+    #debug option is only available in linux
+    if($Debug && $Debug eq "1" && $^O eq "linux"){
+        push(@cmd, "-d");
+    }
+    
+    if($Action && $Action ne ""){
+        push(@cmd, $Action);
     }
     
     if($AdditionalCommands && $AdditionalCommands ne ""){
         push(@cmd, qq{$AdditionalCommands});
     }
     
-    if($StopPort && $StopPort ne ""){
-        push(@cmd, "STOP.PORT=$StopPort");
-    }
-    
-    if($StopKey && $StopKey ne ""){
-        push(@cmd, "STOP.KEY=$StopKey");
-    }
-    
-    if($Action && $Action eq "stop"){
-        push(@cmd, "--stop");
-    }
-    
     my $commandLine = join(" ", @cmd);
     
     $ec->setProperty("/myCall/commandLine", $commandLine);
-    $ec->setProperty("/myCall/workingdir", $JettyHome);
    
 }
   

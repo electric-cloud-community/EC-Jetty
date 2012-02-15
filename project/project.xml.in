@@ -68,6 +68,26 @@
                             <propertyName>parameters</propertyName>
                             <propertySheet>
                                 <property>
+                                    <propertyName>JettyHome</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>JettyScript</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
                                     <propertyName>Action</propertyName>
                                     <propertySheet>
                                         <property>
@@ -116,42 +136,27 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>JavaPath</propertyName>
+                                    <propertyName>Debug</propertyName>
                                     <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
                                         <property>
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
                                         </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>JettyHome</propertyName>
-                                    <propertySheet>
                                         <property>
-                                            <propertyName>formType</propertyName>
+                                            <propertyName>initiallyChecked</propertyName>
                                             <expandable>1</expandable>
-                                            <value>standard</value>
+                                            <value>0</value>
                                         </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>StopPort</propertyName>
-                                    <propertySheet>
                                         <property>
-                                            <propertyName>formType</propertyName>
+                                            <propertyName>uncheckedValue</propertyName>
                                             <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>StopKey</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
+                                            <value>0</value>
                                         </property>
                                     </propertySheet>
                                 </property>
@@ -177,6 +182,12 @@
                 </property>
             </propertySheet>
             <formalParameter>
+                <formalParameterName>JettyHome</formalParameterName>
+                <description>>Absolute path where jetty files and folders are located.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
                 <formalParameterName>Action</formalParameterName>
                 <defaultValue>start</defaultValue>
                 <description>Choose the action to perform when you run the procedure.</description>
@@ -184,30 +195,11 @@
                 <type>select</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>JavaPath</formalParameterName>
-                <defaultValue>java</defaultValue>
-                <description>Absolute path to java.</description>
+                <formalParameterName>Debug</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>If checked, enables debug mode.</description>
                 <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>JettyHome</formalParameterName>
-                <defaultValue/>
-                <description>Absolute path where jetty files and folders are located.</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>StopPort</formalParameterName>
-                <description>Port number (this is to stop the server later)</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>StopKey</formalParameterName>
-                <description>Key value (this is to stop the server later)</description>
-                <required>1</required>
-                <type>entry</type>
+                <type>checkbox</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>AdditionalCommands</formalParameterName>
@@ -267,10 +259,10 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName></resourceName>
                 <retries>0</retries>
-                <shell></shell>
+                <shell>bash</shell>
                 <timeLimit></timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
-                <workingDirectory>$[/myCall/workingdir]</workingDirectory>
+                <workingDirectory></workingDirectory>
                 <workspaceName></workspaceName>
                 <procedureName>RunJetty</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
