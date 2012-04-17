@@ -217,15 +217,14 @@
 
         <h1>Release Notes</h1>
 
-        <h2>@PLUGIN_KEY@-1.0.1</h2>
-        <!-- Specific descriptions of additional or changed functionality,
-            new parameters, etc. The plugin version header of this section should
-            include the speciic build number if possible. Repeat this section for
-            each version.
-            -->
-
+        <h2>@PLUGIN_KEY@-1.0.2</h2>
         <ul>
-            <li>Change Help page style.</li>
+            <li>Procedure name(s) were changed in the step picker section</li>
+        </ul>
+
+        <h2>@PLUGIN_KEY@-1.0.1</h2>
+        <ul>
+            <li>Change Help page style</li>
         </ul>
 
         <h2>@PLUGIN_KEY@-1.0.0</h2>

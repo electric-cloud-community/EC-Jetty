@@ -1,15 +1,18 @@
 my %RunJetty = (
-    label       => "@PLUGIN_KEY@ - RunJetty",
+    label       => "Jetty - Run Jetty",
     procedure   => "RunJetty",
-    description => "Starts/Stops the jetty server",
+    description => "Start/Stop the Jetty server",
     category    => "Application Server"
 );
 
 my %DeployApp = (
-    label       => "@PLUGIN_KEY@ - DeployApp",
+    label       => "Jetty - Deploy Application",
     procedure   => "DeployApp",
-    description => "Deploys war files into the jetty server",
+    description => "Deploy war files into the Jetty server",
     category    => "Application Server"
 );
+
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Jetty - RunJetty");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Jetty - DeployApp");
 
 @::createStepPickerSteps = (\%RunJetty, \%DeployApp);
