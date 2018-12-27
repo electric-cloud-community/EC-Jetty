@@ -216,6 +216,10 @@
         </ol>
 
         <h1>Release Notes</h1>
+        <h2>@PLUGIN_KEY@-1.0.4</h2>
+        <ul>
+            <li>The plugin icon has been updated.</li>
+        </ul>
         <h2>@PLUGIN_KEY@-1.0.3</h2>        <ul>            <li>Renamed ElectricCommander to ElectricFlow.</li>        </ul>
         <h2>@PLUGIN_KEY@-1.0.2</h2>
         <ul>
