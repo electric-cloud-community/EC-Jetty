@@ -6,6 +6,12 @@
         <description>Integration with Jetty</description>
         <workspaceName></workspaceName>
         <propertySheet>
+            <!-- Improvement for ECPRESOURCEJETTY-6 -->
+            <property>
+                <propertyName>ec_icon</propertyName>
+                <value>images/icon-plugin.svg</value>
+            </property>
+            <!-- End of improvement for ECPRESOURCEJETTY-6 -->
             <property>
                 <propertyName>scripts</propertyName>
                 <description></description>
