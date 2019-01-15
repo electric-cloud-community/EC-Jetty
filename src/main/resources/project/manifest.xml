@@ -1,0 +1,27 @@
+<?xml version='1.0' standalone='yes'?>
+<fileset>
+  <file>
+    <path>RunJettyDriver.pl</path>
+    <xpath>//property[propertyName=&quot;RunJettyDriver&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>DeployAppDriver.pl</path>
+    <xpath>//property[propertyName=&quot;DeployAppDriver&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>postp_matchers.pl</path>
+    <xpath>//property[propertyName=&quot;postp_matchers&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/RunJetty.xml</path>
+    <xpath>//procedure[procedureName=&quot;RunJetty&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/DeployApp.xml</path>
+    <xpath>//procedure[procedureName=&quot;DeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>ec_setup.pl</path>
+    <xpath>//property[propertyName=&quot;ec_setup&quot;]/value</xpath>
+  </file>
+</fileset>
