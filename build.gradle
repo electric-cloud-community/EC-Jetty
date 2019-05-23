@@ -37,7 +37,7 @@ repositories {
 
 group = "com.electriccloud"
 description = "Plugins : EC-Jetty"
-version = "1.0.4"
+version = "1.0.5"
 
 apply plugin: 'flow-gradle-plugin'
 apply plugin: 'license'
